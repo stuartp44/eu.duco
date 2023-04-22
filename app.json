@@ -26,15 +26,13 @@
     "name": "Stuart Pearson",
     "email": "support@hnuk.net"
   },
+  "brandColor": "#50b848",
+  "bugs": {
+    "url": "https://github.com/stuartp44/eu.duco/issues"
+  },
+  "source": "https://github.com/stuartp44/eu.duco",
+  "homeyCommunityTopicId": 79607,
   "flow": {
-    "triggers": [
-      {
-        "title": {
-          "en": "Damper Value Changes"
-        },
-        "id": "damper-value-changes"
-      }
-    ],
     "actions": [
       {
         "title": {
@@ -75,7 +73,7 @@
             ]
           }
         ],
-        "id": "set-operational-state"
+        "id": "set_operational_state"
       }
     ]
   },
@@ -117,6 +115,11 @@
           "template": "add_devices"
         }
       ],
+      "capabilitiesOptions": {
+        "measure_power": {
+          "approximated": true
+        }
+      },
       "id": "duco",
       "settings": [
         {
@@ -165,7 +168,9 @@
       },
       "min": 0,
       "max": 100,
-      "step": 1
+      "step": 1,
+      "icon": "/assets/damper.svg",
+      "insights": true
     },
     "duco_duty_state_capability": {
       "type": "enum",
@@ -205,7 +210,7 @@
     "duco_fan_state_capability": {
       "type": "number",
       "title": {
-        "en": "Fan Running State"
+        "en": "Fan Duty"
       },
       "uiComponent": "sensor",
       "getable": true,
@@ -215,7 +220,9 @@
       },
       "min": 0,
       "max": 100,
-      "step": 1
+      "step": 1,
+      "icon": "/assets/fan.svg",
+      "insights": true
     }
   },
   "discovery": {

@@ -25,8 +25,11 @@ class DucoDevice extends Homey.Device {
             this.log(`registerCapabilityListener: ${capability} - ${value}`)
             var returnedState = await this.duco.setNodeState(data.node, value, store.accessible_by)
             if (returnedState.state === 'SUCCESS') {
-              this.setCapabilityValue(deviceCapabilities[capability], value).catch(this.error);
+              await this.setCapabilityValue(deviceCapabilities[capability], value).catch(this.error);
             }
+          });
+          this.homey.flow.getActionCard('set_operational_state').registerRunListener(async (args, state) => {
+              return await this.triggerCapabilityListener(deviceCapabilities[capability], args.state).catch(this.error);
           });
         } catch (error) {
           this.error(error)

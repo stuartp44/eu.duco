@@ -1,11 +1,13 @@
 {
     "type": "number",
-    "title": { "en": "Fan Running State" },
+    "title": { "en": "Fan Duty" },
     "uiComponent": "sensor",
     "getable": true,
     "setable": true,
     "units": { "en": "%" },
     "min": 0,
     "max": 100,
-    "step": 1
+    "step": 1,
+    "icon": "/assets/fan.svg",
+    "insights": true
 }

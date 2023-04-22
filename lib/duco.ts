@@ -51,6 +51,23 @@ interface DucoSetStates {
   state: "FAILED" | "SUCCESS";
 }
 
+interface DucoBoxInfo {
+  general: {
+    Time: number,
+    RFHomeID: string,
+    InstallerState: string,
+  },
+  Calibration: {
+    CalisVaild: boolean,
+    Calibstate: string,
+    CalibError: string,
+  },
+  WeatherStation: {
+    Present: boolean,
+  }
+}
+
+
 export var ipv4 = IpAddress.Address4;
 
 export default class duco {
@@ -125,6 +142,30 @@ export default class duco {
     }
   }
 
+    async getBoxInformation (ip_address: string): Promise<DucoBoxInfo> {
+    try {
+      this.logger.log(`QUERYCONTROLLERBOARD ${ip_address}`);
+      const data: DucoBoxInfo = await this.fetchDataFromDevice('board_info', ip_address) as DucoBoxInfo;
+      this.logger.log(data);
+      return data;
+    } catch (error) {
+      this.logger.error(`Unable to determin box information: ${error}`);
+      throw error;
+    }
+  }
+
+  async getBoardInformation (ip_address: string): Promise<DucoBoardInfo> {
+    try {
+      this.logger.log(`QUERYCONTROLLERBOARD ${ip_address}`);
+      const data: DucoBoardInfo = await this.fetchDataFromDevice('board_info', ip_address) as DucoBoardInfo;
+      this.logger.log(data);
+      return data;
+    } catch (error) {
+      this.logger.error(`Unable to determin board information: ${error}`);
+      throw error;
+    }
+  }
+
   async getCapabilities (devtype: string): Promise<string[]> {
     switch (devtype) {
       case 'BOX':
@@ -138,7 +179,7 @@ export default class duco {
     }
   }
 
-  async capbilityToValueMapper (capability: string) {
+  async capbilityToValueMapper (capability: string): Promise<string> {
     switch (capability) {
       case 'duco_duty_state_capability':
         return 'state';
@@ -163,6 +204,19 @@ export default class duco {
         return true;
       default:
         return false;
+    }
+  }
+
+  async deviceIcon (devtype: string): Promise<string> {
+    switch (devtype) {
+      case 'BOX':
+        return '/focus.svg';
+      case 'VLVRH':
+        return '/damper.svg';
+      case 'UCCO2':
+        return '/remote.svg';
+      default:
+        return '';
     }
   }
 }
