@@ -1,0 +1,25 @@
+[
+    {
+        "type": "group",
+        "label": {
+            "en": "Device Information"
+        },
+        "children": [
+            {
+                "id": "dev_type",
+                "type": "label",
+                "label": { "en": "Device Type" }
+            },
+            {
+                "id": "sw_version",
+                "type": "label",
+                "label": { "en": "Software Version" }
+            },
+            {
+                "id": "accessible_by",
+                "type": "label",
+                "label": { "en": "Accessible via" }
+            }
+        ]
+    }
+]

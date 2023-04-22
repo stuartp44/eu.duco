@@ -1,0 +1,33 @@
+{
+  "type": "enum",
+  "title": { "en": "Duco State" },
+  "getable": true,
+  "setable": true,
+  "uiComponent": "picker",
+  "values": [
+        {
+            "id": "MAN1", 
+            "title": { 
+                "en": "Manual 1"
+            }
+        },    
+        {
+            "id": "MAN2", 
+            "title": {
+                "en": "Manual 2"
+            }
+        },
+        {
+            "id": "MAN3", 
+            "title": {
+                "en": "Manual 3"
+            }
+        },
+        {
+            "id": "AUTO", 
+            "title": {
+                "en": "Automatic"
+            }
+        }
+    ] 
+}

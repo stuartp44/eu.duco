@@ -1,0 +1,38 @@
+{
+  "name": {
+    "en": "Duco"
+  },
+  "class": "other",
+  "capabilities": [
+    "measure_co2",
+    "measure_pm25",
+    "duco_duty_state_capability",
+    "duco_fan_state_capability",
+    "duco_damper_state_capability"
+  ],
+  "platforms": [
+    "local"
+  ],
+  "connectivity": [
+    "lan"
+  ],
+  "images": {
+    "small": "{{driverAssetsPath}}/images/small.png",
+    "large": "{{driverAssetsPath}}/images/large.png",
+    "xlarge": "{{driverAssetsPath}}/images/xlarge.png"
+  },
+  "discovery": "duco",
+  "pair": [
+    {
+      "id": "list_devices",
+      "template": "list_devices",
+      "navigation": {
+        "next": "add_devices"
+      }
+    },
+    {
+      "id": "add_devices",
+      "template": "add_devices"
+    }
+  ]
+}

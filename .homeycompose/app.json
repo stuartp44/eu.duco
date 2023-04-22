@@ -1,0 +1,28 @@
+{
+  "id": "eu.duco",
+  "version": "1.0.0",
+  "compatibility": ">=5.0.0",
+  "sdk": 3,
+  "platforms": [
+    "local"
+  ],
+  "name": {
+    "en": "Duco Air"
+  },
+  "description": {
+    "en": "Adds support for Duco air devices"
+  },
+  "category": [
+    "climate"
+  ],
+  "permissions": [],
+  "images": {
+    "small": "/assets/images/small.png",
+    "large": "/assets/images/large.png",
+    "xlarge": "/assets/images/xlarge.png"
+  },
+  "author": {
+    "name": "Stuart Pearson",
+    "email": "support@hnuk.net"
+  }
+}

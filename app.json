@@ -1,0 +1,242 @@
+{
+  "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
+  "id": "eu.duco",
+  "version": "1.0.0",
+  "compatibility": ">=5.0.0",
+  "sdk": 3,
+  "platforms": [
+    "local"
+  ],
+  "name": {
+    "en": "Duco Air"
+  },
+  "description": {
+    "en": "Adds support for Duco air devices"
+  },
+  "category": [
+    "climate"
+  ],
+  "permissions": [],
+  "images": {
+    "small": "/assets/images/small.png",
+    "large": "/assets/images/large.png",
+    "xlarge": "/assets/images/xlarge.png"
+  },
+  "author": {
+    "name": "Stuart Pearson",
+    "email": "support@hnuk.net"
+  },
+  "flow": {
+    "triggers": [
+      {
+        "title": {
+          "en": "Damper Value Changes"
+        },
+        "id": "damper-value-changes"
+      }
+    ],
+    "actions": [
+      {
+        "title": {
+          "en": "Set operational state"
+        },
+        "hint": {
+          "en": "This card allows you (Where applicable) to set the operational state of the unit and or its dampers"
+        },
+        "args": [
+          {
+            "type": "dropdown",
+            "name": "state",
+            "values": [
+              {
+                "id": "MAN1",
+                "label": {
+                  "en": "Manual 1"
+                }
+              },
+              {
+                "id": "MAN2",
+                "label": {
+                  "en": "Manual 2"
+                }
+              },
+              {
+                "id": "MAN3",
+                "label": {
+                  "en": "Manual 3"
+                }
+              },
+              {
+                "id": "AUTO",
+                "label": {
+                  "en": "Automatic"
+                }
+              }
+            ]
+          }
+        ],
+        "id": "set-operational-state"
+      }
+    ]
+  },
+  "drivers": [
+    {
+      "name": {
+        "en": "Duco"
+      },
+      "class": "other",
+      "capabilities": [
+        "measure_co2",
+        "measure_pm25",
+        "duco_duty_state_capability",
+        "duco_fan_state_capability",
+        "duco_damper_state_capability"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/duco/assets/images/small.png",
+        "large": "/drivers/duco/assets/images/large.png",
+        "xlarge": "/drivers/duco/assets/images/xlarge.png"
+      },
+      "discovery": "duco",
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "duco",
+      "settings": [
+        {
+          "type": "group",
+          "label": {
+            "en": "Device Information"
+          },
+          "children": [
+            {
+              "id": "dev_type",
+              "type": "label",
+              "label": {
+                "en": "Device Type"
+              }
+            },
+            {
+              "id": "sw_version",
+              "type": "label",
+              "label": {
+                "en": "Software Version"
+              }
+            },
+            {
+              "id": "accessible_by",
+              "type": "label",
+              "label": {
+                "en": "Accessible via"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "capabilities": {
+    "duco_damper_state_capability": {
+      "type": "number",
+      "title": {
+        "en": "Damper State"
+      },
+      "uiComponent": "sensor",
+      "getable": true,
+      "setable": true,
+      "units": {
+        "en": "%"
+      },
+      "min": 0,
+      "max": 100,
+      "step": 1
+    },
+    "duco_duty_state_capability": {
+      "type": "enum",
+      "title": {
+        "en": "Duco State"
+      },
+      "getable": true,
+      "setable": true,
+      "uiComponent": "picker",
+      "values": [
+        {
+          "id": "MAN1",
+          "title": {
+            "en": "Manual 1"
+          }
+        },
+        {
+          "id": "MAN2",
+          "title": {
+            "en": "Manual 2"
+          }
+        },
+        {
+          "id": "MAN3",
+          "title": {
+            "en": "Manual 3"
+          }
+        },
+        {
+          "id": "AUTO",
+          "title": {
+            "en": "Automatic"
+          }
+        }
+      ]
+    },
+    "duco_fan_state_capability": {
+      "type": "number",
+      "title": {
+        "en": "Fan Running State"
+      },
+      "uiComponent": "sensor",
+      "getable": true,
+      "setable": true,
+      "units": {
+        "en": "%"
+      },
+      "min": 0,
+      "max": 100,
+      "step": 1
+    }
+  },
+  "discovery": {
+    "duco": {
+      "type": "mdns-sd",
+      "mdns-sd": {
+        "name": "http",
+        "protocol": "tcp"
+      },
+      "id": "{{ host }}",
+      "conditions": [
+        [
+          {
+            "field": "host",
+            "match": {
+              "type": "regex",
+              "value": "^DUCO"
+            }
+          }
+        ]
+      ]
+    }
+  }
+}
