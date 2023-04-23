@@ -98,6 +98,7 @@ class DucoDevice extends Homey.Device {
    */
   async onRenamed(name: string) {
     this.log('DucoDevice was renamed');
+    this.duco.setNodeSettingsValue(this.getData().node, 'Location', name, this.getStore().accessible_by)
   }
 
   /**

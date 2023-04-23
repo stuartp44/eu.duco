@@ -51,19 +51,66 @@ interface DucoSetStates {
   state: "FAILED" | "SUCCESS";
 }
 
+interface DucoNodeSettings {
+  node: number;
+  AutoMin: {
+    Val: number;
+    Min: number;
+    Inc: number;
+    Max: number;
+  },
+  AutoMax: {
+    Val: number;
+    Min: number;
+    Inc: number;
+    Max: number;
+  },
+  Capacity: {
+    Val: number;
+    Min: number;
+    Inc: number;
+    Max: number;
+  },
+  Manual1: {
+    Val: number;
+    Min: number;
+    Inc: number;
+    Max: number;
+  },
+  Manual2: {
+    Val: number;
+    Min: number;
+    Inc: number;
+    Max: number;
+  },
+  Manual3: {
+    Val: number;
+    Min: number;
+    Inc: number;
+    Max: number;
+  },
+  ManualTimeout: {
+    Val: number;
+    Min: number;
+    Inc: number;
+    Max: number;
+  },
+  location: string;
+}
+
 interface DucoBoxInfo {
   general: {
-    Time: number,
-    RFHomeID: string,
-    InstallerState: string,
+    Time: number;
+    RFHomeID: string;
+    InstallerState: string;
   },
   Calibration: {
-    CalisVaild: boolean,
-    Calibstate: string,
-    CalibError: string,
+    CalisVaild: boolean;
+    Calibstate: string;
+    CalibError: string;
   },
   WeatherStation: {
-    Present: boolean,
+    Present: boolean;
   }
 }
 
@@ -115,6 +162,20 @@ export default class duco {
       return data;
     } catch (error) {
       this.logger.error(`Unable to determin node information: ${error}`);
+      throw error;
+    }
+  }
+
+  async setNodeSettingsValue (node: number, param: string, value: string | Number, ip_address: string): Promise<DucoNodeSettings> {
+    try {
+      if (typeof value === 'string') {
+        value = encodeURI(value);
+      }
+      this.logger.log(`SET PARAM ${param} to VALUE ${value} on NODE ${node} via ${ip_address}`);
+      const data: DucoNodeSettings = await this.fetchDataFromDevice(`nodeconfigset?node=${node}&para=${param}&value=${value}`, ip_address) as DucoNodeSettings;
+      return data;
+    } catch (error) {
+      this.logger.error(`Unable to set Node Parameter: ${error}`);
       throw error;
     }
   }
