@@ -180,7 +180,7 @@
     "duco_duty_state_capability": {
       "type": "enum",
       "title": {
-        "en": "Duco State"
+        "en": "State"
       },
       "getable": true,
       "setable": true,
