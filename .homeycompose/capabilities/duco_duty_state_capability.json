@@ -1,6 +1,6 @@
 {
   "type": "enum",
-  "title": { "en": "Duco State" },
+  "title": { "en": "State" },
   "getable": true,
   "setable": true,
   "uiComponent": "picker",
