@@ -1,6 +1,5 @@
 import { SimpleClass } from 'homey';
-import fetch, { Response } from 'node-fetch';
-import * as IpAddress from 'ip-address';
+import fetch from 'node-fetch';
 
 interface DucoNodeList {
   nodelist: number[];
@@ -114,9 +113,6 @@ interface DucoBoxInfo {
   }
 }
 
-
-export var ipv4 = IpAddress.Address4;
-
 export default class duco {
   logger: SimpleClass;
 
@@ -203,7 +199,7 @@ export default class duco {
     }
   }
 
-    async getBoxInformation (ip_address: string): Promise<DucoBoxInfo> {
+  async getBoxInformation (ip_address: string): Promise<DucoBoxInfo> {
     try {
       this.logger.log(`QUERYCONTROLLERBOARD ${ip_address}`);
       const data: DucoBoxInfo = await this.fetchDataFromDevice('board_info', ip_address) as DucoBoxInfo;
