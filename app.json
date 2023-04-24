@@ -35,13 +35,19 @@
   "flow": {
     "actions": [
       {
+        "id": "set_operational_state",
         "title": {
-          "en": "Set operational state"
+          "en": "Set Opertional State"
         },
         "hint": {
-          "en": "This card allows you (Where applicable) to set the operational state of the unit and or its dampers"
+          "en": "This card allows you to set the operational state of the unit and or its dampers"
         },
         "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=duco"
+          },
           {
             "type": "dropdown",
             "name": "state",
@@ -72,8 +78,7 @@
               }
             ]
           }
-        ],
-        "id": "set_operational_state"
+        ]
       }
     ]
   },

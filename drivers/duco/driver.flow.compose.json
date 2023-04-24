@@ -1,0 +1,45 @@
+{
+  "actions": [
+    {
+      "id": "set_operational_state",
+      "title": {
+        "en": "Set Operational State"
+      },
+      "hint": {
+        "en": "This card allows you to set the operational state of the unit and or its dampers"
+      },
+      "args": [
+        {
+          "type": "dropdown",
+          "name": "state",
+          "values": [
+            {
+              "id": "MAN1",
+              "label": {
+                "en": "Manual 1"
+              }
+            },
+            {
+              "id": "MAN2",
+              "label": {
+                "en": "Manual 2"
+              }
+            },
+            {
+              "id": "MAN3",
+              "label": {
+                "en": "Manual 3"
+              }
+            },
+            {
+              "id": "AUTO",
+              "label": {
+                "en": "Automatic"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

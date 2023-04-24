@@ -37,13 +37,6 @@ class DucoDevice extends Homey.Device {
       }
     }
 
-    try {
-      this.pollNode(data.node, store.accessible_by)
-
-    } catch (error) {
-      this.error(error)
-    }
-
     this.timer = setInterval(async () => {
       this.pollNode(data.node, store.accessible_by)
     }, RETRY_INTERVAL)
@@ -67,8 +60,17 @@ class DucoDevice extends Homey.Device {
   /**
    * onAdded is called when the user adds the device, called just after pairing.
    */
-  async onAdded() {
+  async onAdded () {
+    const store = this.getStore();
+    const data = this.getData();
     this.log('DucoDevice has been added');
+    try {
+      this.pollNode(data.node, store.accessible_by)
+    } catch (error) {
+      this.error(error)
+      this.setUnavailable('There was an error getting the node information')
+    }
+
   }
 
   /**
