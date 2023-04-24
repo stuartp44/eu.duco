@@ -13,11 +13,6 @@
     "typescript": "^5.0.4"
   },
   "dependencies": {
-    "@types/request": "^2.48.8",
-    "cross-fetch": "^3.1.5",
-    "fetch": "^1.1.0",
-    "ip-address": "^8.1.0",
-    "node-fetch": "^2.6.9",
-    "typed-rest-client": "^1.8.9"
+    "node-fetch": "^2.6.9"
   }
 }
