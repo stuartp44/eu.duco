@@ -37,7 +37,7 @@
       {
         "id": "set_operational_state",
         "title": {
-          "en": "Set Opertional State"
+          "en": "Set Operational State to [[state]]"
         },
         "hint": {
           "en": "This card allows you to set the operational state of the unit and or its dampers"
