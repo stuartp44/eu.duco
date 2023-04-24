@@ -1,6 +1,5 @@
 import Homey from 'homey';
 import duco from '../../lib/duco';
-import { warn } from 'console';
 
 const RETRY_INTERVAL = 45 * 1000
 
@@ -13,7 +12,6 @@ class DucoDevice extends Homey.Device {
    */
   async onInit() {
     this.log('DucoDevice has been initialized');
-    const settings = this.getSettings();
     const data = this.getData();
     const store = this.getStore();
     const deviceCapabilities = this.getCapabilities();
@@ -102,7 +100,7 @@ class DucoDevice extends Homey.Device {
     try {
       if (name.length > 19) {
         this.duco.setNodeSettingsValue(this.getData().node, 'Location', name.slice(0, 19), this.getStore().accessible_by)
-        throw warn ('Name is too long, it has been truncated to 19 characters')
+        throw ('Name is too long, it has been truncated to 19 characters')
       } else {
         this.log('DucoDevice was renamed');
         this.duco.setNodeSettingsValue(this.getData().node, 'Location', name, this.getStore().accessible_by)
