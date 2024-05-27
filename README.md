@@ -1,6 +1,6 @@
-# Duco Air
+# Duco Air plugin for Homey
 
-Adds support for Duco air devices. You must have installed the Duco e.g https://www.cvtotaal.nl/duco-communication-print-voor-ducobox-silent-focus-energy.html for this plugin to work.
+Adds support for Duco air devices to Homey. You must have installed the Duco e.g https://www.cvtotaal.nl/duco-communication-print-voor-ducobox-silent-focus-energy.html for this plugin to work.
 
 # Contributions
 
