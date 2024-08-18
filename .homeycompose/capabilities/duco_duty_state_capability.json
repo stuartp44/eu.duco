@@ -24,6 +24,24 @@
             }
         },
         {
+            "id": "CNT1", 
+            "title": {
+                "en": "Continues 1"
+            }
+        },
+        {
+            "id": "CNT2", 
+            "title": {
+                "en": "Continues 2"
+            }
+        },
+        {
+            "id": "CNT3", 
+            "title": {
+                "en": "Continues 3"
+            }
+        },
+        {
             "id": "AUTO", 
             "title": {
                 "en": "Automatic"

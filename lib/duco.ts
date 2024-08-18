@@ -43,7 +43,7 @@ interface DucoBoardInfo {
 }
 
 interface DucoNodeState {
-  state: "MAN1" | "MAN2" | "MAN3" | "AUTO"
+  state: "MAN1" | "MAN2" | "MAN3" | "AUTO" | "CNT1" | "CNT2" | "CNT3"
 }
 
 interface DucoSetStates {
