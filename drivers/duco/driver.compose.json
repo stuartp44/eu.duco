@@ -8,7 +8,8 @@
     "measure_pm25",
     "duco_duty_state_capability",
     "duco_fan_state_capability",
-    "duco_damper_state_capability"
+    "duco_damper_state_capability",
+    "duco_sensor_requested_duty_capability"
   ],
   "platforms": [
     "local"

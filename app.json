@@ -1,7 +1,7 @@
 {
   "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
   "id": "eu.duco",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "compatibility": ">=5.0.0",
   "sdk": 3,
   "platforms": [
@@ -114,7 +114,8 @@
         "measure_pm25",
         "duco_duty_state_capability",
         "duco_fan_state_capability",
-        "duco_damper_state_capability"
+        "duco_damper_state_capability",
+        "duco_sensor_requested_duty_capability"
       ],
       "platforms": [
         "local"
@@ -255,6 +256,23 @@
       "type": "number",
       "title": {
         "en": "Fan Duty"
+      },
+      "uiComponent": "sensor",
+      "getable": true,
+      "setable": true,
+      "units": {
+        "en": "%"
+      },
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "icon": "/assets/fan.svg",
+      "insights": true
+    },
+    "duco_sensor_requested_duty_capability": {
+      "type": "number",
+      "title": {
+        "en": "Sensor Requested Duty"
       },
       "uiComponent": "sensor",
       "getable": true,

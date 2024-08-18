@@ -1,0 +1,13 @@
+{
+    "type": "number",
+    "title": { "en": "Sensor Requested Duty" },
+    "uiComponent": "sensor",
+    "getable": true,
+    "setable": true,
+    "units": { "en": "%" },
+    "min": 0,
+    "max": 100,
+    "step": 1,
+    "icon": "/assets/fan.svg",
+    "insights": true
+}

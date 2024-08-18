@@ -228,7 +228,7 @@ export default class duco {
       case 'BOX':
         return ['duco_duty_state_capability', 'duco_fan_state_capability'];
       case 'VLVRH':
-        return ['duco_duty_state_capability', 'duco_damper_state_capability', 'measure_temperature', 'measure_humidity'];
+        return ['duco_duty_state_capability', 'duco_damper_state_capability', 'duco_sensor_requested_duty_capability', 'measure_temperature', 'measure_humidity'];
       case 'UCCO2':
         return ['measure_temperature', 'measure_co2'];
       default:
@@ -238,6 +238,8 @@ export default class duco {
 
   async capbilityToValueMapper (capability: string): Promise<string> {
     switch (capability) {
+      case 'duco_sensor_requested_duty_capability':
+        return 'snsr';
       case 'duco_duty_state_capability':
         return 'state';
       case 'duco_fan_state_capability':
