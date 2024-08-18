@@ -11,7 +11,6 @@ class DucoDevice extends Homey.Device {
    * onInit is called when the device is initialized.
    */
   async onInit() {
-    this.log('DucoDevice has been initialized');
     const data = this.getData();
     const store = this.getStore();
     const deviceCapabilities = this.getCapabilities();
@@ -21,14 +20,7 @@ class DucoDevice extends Homey.Device {
       if (requiresListener === true) {
         try {
           this.registerCapabilityListener(deviceCapabilities[capability], async (value) => {
-            this.log(`registerCapabilityListener: ${capability} - ${value}`)
-            var returnedState = await this.duco.setNodeState(data.node, value, store.accessible_by)
-            if (returnedState.state === 'SUCCESS') {
-              await this.setCapabilityValue(deviceCapabilities[capability], value).catch(this.error);
-            }
-          });
-          this.homey.flow.getActionCard('set_operational_state').registerRunListener(async (args, state) => {
-              return await this.triggerCapabilityListener(deviceCapabilities[capability], args.state).catch(this.error);
+            await this.setNodeOperationalState(deviceCapabilities[capability], value).catch(this.error);
           });
         } catch (error) {
           this.error(error)
@@ -39,6 +31,23 @@ class DucoDevice extends Homey.Device {
     this.timer = setInterval(async () => {
       this.pollNode(data.node, store.accessible_by)
     }, RETRY_INTERVAL)
+
+    this.pollNode(data.node, store.accessible_by)
+    this.log(`${store.dev_type} has been initialized`);
+  }
+  
+  async setNodeOperationalState(capability: any, state: any)
+  {
+    try {
+      const data = this.getData();
+      const store = this.getStore();
+      var returnedState = await this.duco.setNodeState(data.node, state, store.accessible_by)
+      if (returnedState.state === 'SUCCESS') {
+        await this.setCapabilityValue(capability, state).catch(this.error);
+      }
+    } catch (error) {
+      this.error(error)
+    }
   }
 
   async pollNode (node: number, ip_address: string) {
@@ -48,6 +57,7 @@ class DucoDevice extends Homey.Device {
       for (const capability in capabilitiesToUpdate) {
         const mappedToValue = await this.duco.capbilityToValueMapper(capabilitiesToUpdate[capability]) as keyof typeof currentNodeValues
         this.setCapabilityValue(capabilitiesToUpdate[capability], currentNodeValues[mappedToValue])
+        await this.setAvailable().catch(this.error);
       }
       this.log(currentNodeValues)
     } catch (error) {

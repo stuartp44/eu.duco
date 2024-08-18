@@ -39,6 +39,9 @@
         "title": {
           "en": "Set Operational State to [[state]]"
         },
+        "titleFormatted": {
+          "en": "Set Operational State to [[state]]"
+        },
         "hint": {
           "en": "This card allows you to set the operational state of the unit and or its dampers"
         },
@@ -46,7 +49,7 @@
           {
             "type": "device",
             "name": "device",
-            "filter": "driver_id=duco"
+            "filter": "driver_id=duco&capabilities=duco_duty_state_capability"
           },
           {
             "type": "dropdown",

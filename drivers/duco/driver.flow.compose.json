@@ -5,9 +5,13 @@
       "title": {
         "en": "Set Operational State to [[state]]"
       },
+      "titleFormatted": {
+        "en": "Set Operational State to [[state]]"
+      },
       "hint": {
         "en": "This card allows you to set the operational state of the unit and or its dampers"
       },
+      "$filter": "capabilities=duco_duty_state_capability",
       "args": [
         {
           "type": "dropdown",
