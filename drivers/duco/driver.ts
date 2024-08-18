@@ -8,7 +8,7 @@ class DucoDriver extends Homey.Driver {
    * onInit is called when the driver is initialized.
    */
   async onInit() {
-    this.log('DucoDriver has been initialized');
+    this.log('Duco Driver has been initialized');
     const card = this.homey.flow.getActionCard('set_operational_state');
     card.registerRunListener(async (args) => {
       await args.device.setNodeOperationalState("duco_duty_state_capability", args.state);
