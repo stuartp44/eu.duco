@@ -1,1 +1,6 @@
-{}
+{
+    "settings": {
+        "title": "My Settings Page",
+        "subtitle": "Here you can setup general settings for the Duco Plugin"
+      }
+}

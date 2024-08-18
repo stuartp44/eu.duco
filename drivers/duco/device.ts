@@ -1,8 +1,6 @@
 import Homey from 'homey';
 import duco from '../../lib/duco';
 
-const RETRY_INTERVAL = 45 * 1000
-
 class DucoDevice extends Homey.Device {
   private duco: duco = new duco(this);
  
@@ -11,6 +9,13 @@ class DucoDevice extends Homey.Device {
    * onInit is called when the device is initialized.
    */
   async onInit() {
+    var poll_interval = this.homey.settings.get('poll_interval');
+    if (!poll_interval) {
+      poll_interval = 45 * 1000
+    }
+    else {
+      poll_interval = poll_interval * 1000
+    }
     const data = this.getData();
     const store = this.getStore();
     const deviceCapabilities = this.getCapabilities();
@@ -30,7 +35,7 @@ class DucoDevice extends Homey.Device {
 
     this.timer = setInterval(async () => {
       this.pollNode(data.node, store.accessible_by)
-    }, RETRY_INTERVAL)
+    }, poll_interval)
 
     this.pollNode(data.node, store.accessible_by)
     this.log(`${store.dev_type} has been initialized`);
